@@ -16,7 +16,7 @@ from osgeo import ogr
 import time
 
 # World Borders DataSet download from http://thematicmapping.org/downloads/world_borders.php
-country_shape_file = "/home/zhuolin/baidu_poi/data/TM_WORLD_BORDERS-0.3.shp"
+country_shape_file = "/home/test/baidu_poi/data/TM_WORLD_BORDERS-0.3.shp"
 time_format = "%Y-%m-%d %X"
 #lat_range = [18.1, 53.55]
 #lng_range = [73.666667, 135.041667]
@@ -235,9 +235,9 @@ if __name__=="__main__":
     keyword_type = sys.argv[1]
     print keyword_type
     time_stamp = int(time.time())
-    poi_tag_file = "/home/zhuolin/baidu_poi/polygon/keyword"
-    data_file = "/home/zhuolin/baidu_poi/polygon/data/%s.%s" % (keyword_type, time_stamp)
-    log_file = "/home/zhuolin/baidu_poi/polygon/logs/log.%s.%s" % (keyword_type, time_stamp)
+    poi_tag_file = "/home/test/baidu_poi/polygon/keyword"
+    data_file = "/home/test/baidu_poi/polygon/data/%s.%s" % (keyword_type, time_stamp)
+    log_file = "/home/test/baidu_poi/polygon/logs/log.%s.%s" % (keyword_type, time_stamp)
     if keyword_type == "k1111":
         lng_lat_interval = 0.02
         poly_file = sys.argv[2]
