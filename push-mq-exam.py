@@ -11,10 +11,10 @@ import chardet
 logging.basicConfig(level=logging.INFO, filename='./log.msglc', format='%(asctime)s %(levelname)s %(message)s')
 
 def import_all(fileName) :
-    mq_host = '192.168.249.174'
+    mq_host = 'localhost'
     logging.info("file name is %s"%fileName)
     cc = 0
-    credentials = pika.PlainCredentials('developer', 'DeveLoper_MQ')
+    credentials = pika.PlainCredentials('test', 'test')
     connection = pika.BlockingConnection(pika.ConnectionParameters( mq_host, 5672, '/', credentials))
     channel = connection.channel()
     logging.info('Init mq conn ok')
@@ -26,7 +26,7 @@ def import_all(fileName) :
             if( index <> -1):
                 line = fileLine[index + len(regex_error):]
                 try:
-                    channel.basic_publish(exchange='fix-ex-msgcycle',routing_key='fix-rk-msgcycle',body=line)        
+                    channel.basic_publish(exchange='fix-ex',routing_key='fix-rk',body=line)        
                     cc = cc + 1
                     if (cc % 1000) == 0:
                         logging.inf0('push %d' % cc)
