@@ -1,0 +1,16 @@
+==========二分查找(数组有序)============
+def handle(key, mylist):
+    low = 0
+    high = len(mylist) - 1
+    while low <= high:
+        mid = low + (high - low) / 2
+        if (key < mylist[mid]): 
+            high = mid
+        elif (key > mylist[mid]):
+            low = mid
+        else:
+            return mid
+    return -1
+
+mylist = [1,5,14,25,34,46,67,89,120]
+print handle(5, mylist)
