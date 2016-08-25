@@ -14,3 +14,18 @@ def handle(key, mylist):
 
 mylist = [1,5,14,25,34,46,67,89,120]
 print handle(5, mylist)
+===========选择排序================
+def choice1(mylist):
+    length = len(mylist)
+    for i in range(0,length):
+        j=i+1
+        min = i
+        for j in range(j,length):
+            if(mylist[min]>mylist[j]): min=j
+        tmp = mylist[i]
+        mylist[i]=mylist[min]
+        mylist[min]=tmp
+    return mylist
+
+mylist=[23,5,67,98,45,33,120,24,49]
+print choice1(mylist)
