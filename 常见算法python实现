@@ -29,3 +29,18 @@ def choice1(mylist):
 
 mylist=[23,5,67,98,45,33,120,24,49]
 print choice1(mylist)
+===========插入排序===============
+def sort(mylist):
+    n = len(mylist)
+    for i in range(1,n):
+        j=i
+        while (j>0 and mylist[j]<mylist[j-1]):
+            tmp = mylist[j]
+            mylist[j]=mylist[j-1]
+            mylist[j-1]=tmp
+            j=j-1
+        print mylist
+    return mylist
+
+mylist=[23,5,67,34,56,28,9,230,46]
+print sort(mylist)
