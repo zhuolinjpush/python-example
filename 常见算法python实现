@@ -45,6 +45,7 @@ def sort(mylist):
 mylist=[23,5,67,34,56,28,9,230,46]
 print sort(mylist)
 ==========希尔排序=============
+希尔排序比插入排序和选择排序要快得多，并且数组越大，优势越大
 def xsort(mylist):
     N = len(mylist)
     print N
