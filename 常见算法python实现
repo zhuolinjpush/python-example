@@ -44,3 +44,25 @@ def sort(mylist):
 
 mylist=[23,5,67,34,56,28,9,230,46]
 print sort(mylist)
+==========希尔排序=============
+def xsort(mylist):
+    N = len(mylist)
+    print N
+    h = 1
+    while h < N/3:
+        h=3*h+1
+    while h>=1:
+        for i in range(h,N):
+            j=i
+            while (j>=h and mylist[j]<mylist[j-h]):
+                tmp = mylist[j-h]
+                mylist[j-h]=mylist[j]
+                mylist[j]=tmp
+                j=j-h
+            print i , mylist
+        print mylist
+        h=h/3
+    return mylist
+
+mylist=[23,5,67,34,56,28,9,230,46,33,56,98,20,10,204,39,53]
+print xsort(mylist)
