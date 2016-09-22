@@ -44,6 +44,18 @@ class Handler():
 			print e	
 		finally:
 			self.close()
+			
+	def query(self,sql,day):
+	        try:
+	                data = []
+	                cursor = self.myclient.cursor()
+	                cursor.execute(sql)
+	                res = cursor.fetchall()
+	                for r in res:
+	                        data.append((r[0],day,r[1],r[1]))
+	                return data
+	        except Exception,e:
+	                print e
 
 	def close(self):
 		if self.myclient != None:
