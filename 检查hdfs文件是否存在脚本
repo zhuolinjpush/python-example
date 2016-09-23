@@ -1,0 +1,62 @@
+#!/bin/bash
+
+echo '------------------------------------------------------'
+itime=`date -d "1 days ago" +"%Y%m%d"`
+year=${itime:0:4}
+month=${itime:4:2}
+day=${itime:6:2}
+s00=${itime:0:8}'00'
+e23=${itime:0:8}'23'
+
+files='
+/user/log/hive/reportAppkey
+'
+
+function checkfile()
+{
+	for i in $files
+	do
+		scanfile $i
+	done
+}
+
+function scanfile()
+{
+	file=$1
+	err=""
+	for (( i=$s00;i<=$e23;i++));
+	do
+		hdfs=$file'/'$year'/'$month'/'$day'/'$i
+		echo $hdfs
+		hadoop fs -test -e $hdfs
+		if [ $? -ne 0 ]; then 
+			echo 'not exist '$i
+			err=$err','$i
+			continue
+		fi
+		num=`hadoop fs -ls $hdfs |awk '{print $5}'`
+		if [ $num -eq 0 ]; then
+			echo $num
+			echo 'empty file '$i
+			err=$err','$i
+		fi
+	done;
+	echo $err
+	empty=""
+	if [ "$err" != "$empty" ]; then
+		msg='error[msg-offline]'$hdfs$err
+		echo $msg
+		alert $msg
+	fi   
+}
+
+function alert()
+{
+	telmsg=$1
+	SEND="curl -X POST -H \"Content-Type:application/json\" -d '{\"code\":48,\"desc\":\"${telmsg}\"}' http://alert.test.com/v1/alert/"
+	eval "${SEND}"
+	response_code=$?
+	echo 'response code '${response_code}
+}
+
+checkfile
