@@ -1,0 +1,5 @@
+--------------
+json:{"uid":22223333,"appkey":"1234543434","updateTime":1474300799403,
+"tags":"ver404,Android,13850663952,597,abbbbbbb"}
+添加select判断并用\t分隔：./jq  -r 'select(.tags!=null and .tags!="")|"\(.appkey)\("\t")\(.uid)\("\t")\(.tags)"'
+---------------
